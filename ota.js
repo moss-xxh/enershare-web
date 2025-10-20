@@ -32,10 +32,7 @@ function initOtaData() {
                 size: '-',
                 uploadDate: '2025-01-15',
                 status: 'active',
-                description: {
-                    zh: '修复了网络连接问题，优化了系统性能',
-                    en: 'Fixed network connection issues and optimized system performance'
-                }
+                description: '修复了网络连接问题，优化了系统性能'
             },
             {
                 id: 2,
@@ -44,10 +41,7 @@ function initOtaData() {
                 size: '-',
                 uploadDate: '2025-01-10',
                 status: 'active',
-                description: {
-                    zh: '安全更新，修复了多个安全漏洞',
-                    en: 'Security update, fixed multiple vulnerabilities'
-                }
+                description: '安全更新，修复了多个安全漏洞'
             },
             {
                 id: 3,
@@ -56,10 +50,7 @@ function initOtaData() {
                 size: '-',
                 uploadDate: '2025-01-05',
                 status: 'inactive',
-                description: {
-                    zh: '主要版本更新，新增多个功能',
-                    en: 'Major version update with new features'
-                }
+                description: '主要版本更新，新增多个功能'
             }
         ];
         saveOtaData();
@@ -265,12 +256,8 @@ function showOtaForm(id = null) {
                     <input type="text" class="form-input" id="pkgVersion" value="${pkg?.version || ''}" placeholder="例如: 1.0" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">${translations[currentLang].descriptionZh || '描述(中文)'}</label>
-                    <input type="text" class="form-input" id="pkgDescriptionZh" value="${pkg?.description?.zh || ''}" placeholder="例如: 修复了网络连接问题">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">${translations[currentLang].descriptionEn || '描述(English)'}</label>
-                    <input type="text" class="form-input" id="pkgDescriptionEn" value="${pkg?.description?.en || ''}" placeholder="e.g.: Fixed network connection issues">
+                    <label class="form-label">${translations[currentLang].description}</label>
+                    <input type="text" class="form-input" id="pkgDescription" value="${typeof pkg?.description === 'object' ? (pkg.description[currentLang] || pkg.description.zh || '') : (pkg?.description || '')}" placeholder="${currentLang === 'zh' ? '例如: 修复了网络连接问题' : 'e.g.: Fixed network connection issues'}">
                 </div>
                 <div class="form-group">
                     <label class="form-label">${translations[currentLang].file}<span class="required">*</span></label>
@@ -337,15 +324,9 @@ function handleSubmit(e) {
     e.preventDefault();
 
     const version = document.getElementById('pkgVersion').value;
-    const descriptionZh = document.getElementById('pkgDescriptionZh').value || '';
-    const descriptionEn = document.getElementById('pkgDescriptionEn').value || '';
+    const description = document.getElementById('pkgDescription').value || '';
     const fileInput = document.getElementById('pkgFile');
     const fileName = fileInput.files[0]?.name || '';
-
-    const description = {
-        zh: descriptionZh,
-        en: descriptionEn
-    };
 
     if (editingId) {
         // 编辑
