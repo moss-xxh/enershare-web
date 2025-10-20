@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱尚 - EnerShare</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 背景动画层 -->
+    <div class="background-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="标志.jpg" alt="EnerShare" class="nav-logo">
+            <div class="nav-right">
+                <div class="language-selector">
+                    <button class="lang-option active" data-lang="zh">中文</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- 左侧文案区域 -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-i18n="heroTitle">
+                        为地球<br>创造清洁能源
+                    </h1>
+                    <p class="hero-subtitle" data-i18n="heroSubtitle">
+                        智能能源管理系统，让绿色能源触手可及
+                    </p>
+                </div>
+            </div>
+
+            <!-- 右侧登录卡片 -->
+            <div class="login-card">
+                <div class="card-inner">
+                    <h2 class="card-title" data-i18n="loginTitle">登录</h2>
+
+                    <form class="login-form" id="loginForm">
+                        <div class="form-field">
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder=" "
+                                value="admin"
+                                autocomplete="username"
+                            >
+                            <label for="username" data-i18n="usernameLabel">用户名或邮箱</label>
+                            <div class="field-border"></div>
+                        </div>
+
+                        <div class="form-field">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder=" "
+                                value="admin"
+                                autocomplete="current-password"
+                            >
+                            <label for="password" data-i18n="passwordLabel">密码</label>
+                            <div class="field-border"></div>
+                            <button type="button" class="toggle-visibility" aria-label="显示密码">
+                                <svg class="icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="form-field captcha-field">
+                            <input
+                                type="text"
+                                id="captcha"
+                                name="captcha"
+                                placeholder=" "
+                                maxlength="3"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                                autocomplete="off"
+                            >
+                            <label for="captcha" data-i18n="captchaLabel">验证码</label>
+                            <div class="field-border"></div>
+                            <div class="captcha-code" id="captchaCode" title="点击刷新">3 + 5 = ?</div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <span data-i18n="signIn">登录</span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 爱尚能源 · EnerShare</p>
+            <div class="footer-links">
+                <a href="#" data-i18n="privacy">隐私政策</a>
+                <a href="#" data-i18n="terms">服务条款</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

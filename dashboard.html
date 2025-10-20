@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱尚 - 系统管理</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Quill 富文本编辑器 -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景动画层 -->
+    <div class="background-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- 管理系统容器 -->
+    <div class="admin-container">
+        <!-- 左侧菜单栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="标志.jpg" alt="EnerShare" class="sidebar-logo">
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-menu="ota">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                    </svg>
+                    <span data-i18n="otaUpgrade">OTA升级</span>
+                </div>
+
+                <div class="nav-item" data-menu="manual">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span data-i18n="manual">说明书</span>
+                </div>
+
+                <div class="nav-item" data-menu="guide">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span data-i18n="operationGuide">操作手册</span>
+                </div>
+
+                <div class="nav-item" data-menu="privacy">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span data-i18n="privacy">隐私协议</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>© 2025 爱尚能源</p>
+            </div>
+        </aside>
+
+        <!-- 右侧主内容区 -->
+        <main class="main-area">
+            <!-- 顶部导航栏 -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h1 class="page-title" data-i18n="otaUpgrade">OTA升级</h1>
+                </div>
+
+                <div class="top-bar-right">
+                    <!-- 语言切换下拉菜单 -->
+                    <div class="language-dropdown">
+                        <button class="lang-current" id="langButton">
+                            <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                            </svg>
+                            <span id="currentLang">简体中文</span>
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="lang-menu" id="langMenu">
+                            <div class="lang-item active" data-lang="zh">简体中文</div>
+                            <div class="lang-item" data-lang="en">English</div>
+                        </div>
+                    </div>
+
+                    <!-- 退出按钮 -->
+                    <button class="btn-logout" id="logoutBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span data-i18n="logout">退出</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- OTA升级内容 -->
+                <section class="content-section active" data-section="ota">
+                    <!-- 操作栏 -->
+                    <div class="action-bar">
+                        <button class="btn-add" id="addOtaBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span data-i18n="addPackage">添加升级包</span>
+                        </button>
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="searchInput" placeholder="搜索升级包..." data-i18n-placeholder="searchPlaceholder">
+                        </div>
+                    </div>
+
+                    <!-- 升级包列表 -->
+                    <div class="ota-table-container">
+                        <table class="ota-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="version">版本号</th>
+                                    <th data-i18n="description">描述</th>
+                                    <th data-i18n="uploadDate">上传日期</th>
+                                    <th data-i18n="actions" style="text-align: left;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="otaTableBody">
+                                <!-- 数据通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="pagination" id="pagination">
+                        <button class="page-btn" id="prevPage" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <div class="page-numbers" id="pageNumbers"></div>
+                        <button class="page-btn" id="nextPage">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 说明书内容 -->
+                <section class="content-section" data-section="manual">
+                    <!-- 操作栏 -->
+                    <div class="action-bar">
+                        <button class="btn-add" id="addManualBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span data-i18n="addManual">添加说明书</span>
+                        </button>
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="manualSearchInput" placeholder="搜索说明书...">
+                        </div>
+                    </div>
+
+                    <!-- 说明书列表 -->
+                    <div class="ota-table-container">
+                        <table class="ota-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="language">语言</th>
+                                    <th data-i18n="fileName">文件名</th>
+                                    <th data-i18n="uploadDate">上传日期</th>
+                                    <th data-i18n="actions" style="text-align: left;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="manualTableBody">
+                                <!-- 数据通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button class="page-btn" id="manualPrevPage" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <div class="page-numbers" id="manualPageNumbers"></div>
+                        <button class="page-btn" id="manualNextPage">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 操作手册内容 -->
+                <section class="content-section" data-section="guide">
+                    <!-- 操作栏 -->
+                    <div class="action-bar">
+                        <button class="btn-add" id="addGuideBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span data-i18n="addGuide">添加操作手册</span>
+                        </button>
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="guideSearchInput" placeholder="搜索操作手册...">
+                        </div>
+                    </div>
+
+                    <!-- 操作手册列表 -->
+                    <div class="ota-table-container">
+                        <table class="ota-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="language">语言</th>
+                                    <th data-i18n="fileName">文件名</th>
+                                    <th data-i18n="uploadDate">上传日期</th>
+                                    <th data-i18n="actions" style="text-align: left;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="guideTableBody">
+                                <!-- 数据通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button class="page-btn" id="guidePrevPage" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <div class="page-numbers" id="guidePageNumbers"></div>
+                        <button class="page-btn" id="guideNextPage">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 隐私协议内容 -->
+                <section class="content-section" data-section="privacy">
+                    <!-- 操作栏 -->
+                    <div class="action-bar">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="privacySearchInput" placeholder="搜索隐私协议...">
+                        </div>
+                    </div>
+
+                    <!-- 隐私协议列表 -->
+                    <div class="ota-table-container">
+                        <table class="ota-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="language">语言</th>
+                                    <th data-i18n="updateDate">更新日期</th>
+                                    <th data-i18n="actions" style="text-align: left;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="privacyTableBody">
+                                <!-- 数据通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button class="page-btn" id="privacyPrevPage" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <div class="page-numbers" id="privacyPageNumbers"></div>
+                        <button class="page-btn" id="privacyNextPage">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quill 富文本编辑器 -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="ota.js"></script>
+    <script src="manual.js"></script>
+    <script src="guide.js"></script>
+    <script src="privacy.js"></script>
+</body>
+</html>
