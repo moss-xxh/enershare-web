@@ -156,7 +156,7 @@ function renderTable(searchTerm = '') {
                         <button class="action-btn download" onclick="handleDownload(${pkg.id})">
                             ${translations[currentLang].download}
                         </button>
-                        <button class="action-btn edit" onclick="handleEdit(${pkg.id})">
+                        <button class="action-btn edit" onclick="handleEdit(${pkg.id})" style="display: none;">
                             ${translations[currentLang].edit}
                         </button>
                         <button class="action-btn delete" onclick="handleDelete(${pkg.id})">
